@@ -87,5 +87,6 @@ exports.forgotPassword = (req, res) => {
 exports.resetPassword = (req, res) => {
   res.status(200).render('resetPassword', {
     title: 'reset password',
+    token: req.params.token,
   });
 };

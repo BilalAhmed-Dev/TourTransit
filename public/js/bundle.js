@@ -6676,25 +6676,19 @@ var displayMap = function displayMap(locations) {
   var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/bilalsalem/cksc2cdr92meb17rzn1q8ljij',
-    scrollZoom: false //   center: [137.398534, 36.097896],
-    //   zoom: 10,
-
+    scrollZoom: false
   });
   var bounds = new mapboxgl.LngLatBounds();
   locations.forEach(function (loc) {
-    // create marker
     var el = document.createElement('div');
-    el.className = 'marker'; //Add marker
-
+    el.className = 'marker';
     new mapboxgl.Marker({
       element: el,
       anchor: 'bottom'
-    }).setLngLat(loc.coordinates).addTo(map); // Add popup
-
+    }).setLngLat(loc.coordinates).addTo(map);
     new mapboxgl.Popup({
       offset: 30
-    }).setLngLat(loc.coordinates).setHTML("<p>Day ".concat(loc.day, ": ").concat(loc.description, "</p>")).addTo(map); // Extend map bounds to include current location
-
+    }).setLngLat(loc.coordinates).setHTML("<p>Day ".concat(loc.day, ": ").concat(loc.description, "</p>")).addTo(map);
     bounds.extend(loc.coordinates);
   });
   map.fitBounds(bounds, {
@@ -8668,14 +8662,7 @@ var login = /*#__PURE__*/function () {
   return function login(_x, _x2) {
     return _ref.apply(this, arguments);
   };
-}(); // document.querySelector('.form').addEventListener('submit', (e) => {
-//   e.preventDefault();
-//   const email = document.getElementById('email').value;
-//   const password = document.getElementById('password').value;
-//   // console.log(email, password);
-//   login(email, password);
-// });
-
+}();
 
 exports.login = login;
 
@@ -8807,10 +8794,11 @@ var resetPassword = /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.prev = 0;
-            _context.next = 3;
+            console.log('bhello');
+            _context.prev = 1;
+            _context.next = 4;
             return (0, _axios.default)({
-              method: 'POST',
+              method: 'PATCH',
               url: "http://127.0.0.1:3000/api/v1/users/resetPassword/".concat(token),
               data: {
                 password: password,
@@ -8818,27 +8806,31 @@ var resetPassword = /*#__PURE__*/function () {
               }
             });
 
-          case 3:
+          case 4:
             res = _context.sent;
 
             if (res.data.status === 'success') {
-              (0, _alerts.showAlert)('success', 'An email has been sent!');
+              (0, _alerts.showAlert)('success', 'The password has been successfully changed!');
+              window.setTimeout(function () {
+                location.assign('/');
+              }, 1500);
             }
 
-            _context.next = 10;
+            _context.next = 12;
             break;
 
-          case 7:
-            _context.prev = 7;
-            _context.t0 = _context["catch"](0);
+          case 8:
+            _context.prev = 8;
+            _context.t0 = _context["catch"](1);
+            console.log('erroror');
             (0, _alerts.showAlert)('error', _context.t0.response.data.message);
 
-          case 10:
+          case 12:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 7]]);
+    }, _callee, null, [[1, 8]]);
   }));
 
   return function resetPassword(_x, _x2, _x3) {
@@ -8865,7 +8857,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-// type is either 'password' or 'data'
 var updateSettings = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(data, type) {
     var url, res;
@@ -8909,14 +8900,7 @@ var updateSettings = /*#__PURE__*/function () {
   return function updateSettings(_x, _x2) {
     return _ref.apply(this, arguments);
   };
-}(); // document.querySelector('.form').addEventListener('submit', (e) => {
-//   e.preventDefault();
-//   const email = document.getElementById('email').value;
-//   const password = document.getElementById('password').value;
-//   // console.log(email, password);
-//   login(email, password);
-// });
-
+}();
 
 exports.updateSettings = updateSettings;
 },{"axios":"../../node_modules/axios/index.js","./alerts":"alerts.js"}],"stripe.js":[function(require,module,exports) {
@@ -8952,8 +8936,7 @@ var bookTour = /*#__PURE__*/function () {
 
           case 3:
             session = _context.sent;
-            console.log(session); // 2) Create checkout form + charge credit card
-
+            console.log(session);
             _context.next = 7;
             return stripe.redirectToCheckout({
               sessionId: session.data.session.id
@@ -9268,7 +9251,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-// DOM ELEMENTS
 var mapBox = document.getElementById('map');
 var signUpForm = document.querySelector('.form--signUp');
 var loginForm = document.querySelector('.form--login');
@@ -9277,12 +9259,10 @@ var resetPasswordForm = document.querySelector('.form--resetPassword');
 var logOutBtn = document.querySelector('.nav__el--logout');
 var userForm = document.querySelector('.form-user-data');
 var userPasswordForm = document.querySelector('.form-user-password');
-var bookBtn = document.getElementById('book-tour'); // VALUES
-// DELEGATION
+var bookBtn = document.getElementById('book-tour');
 
 if (mapBox) {
-  var locations = JSON.parse(mapBox.dataset.location); // console.log(locations);
-
+  var locations = JSON.parse(mapBox.dataset.location);
   (0, _mapbox.displayMap)(locations);
 }
 
@@ -9308,20 +9288,19 @@ if (forgotPassWord) forgotPassWord.addEventListener('submit', function (e) {
 if (resetPasswordForm) resetPasswordForm.addEventListener('submit', function (e) {
   e.preventDefault();
   var password = document.getElementById('password').value;
-  var passwordConfirm = document.getElementById('passwordConfirm').value; // const token = need to figure out how to get;
-  // resetPassword(password, passwordConfirm, token); need to be tested
+  var passwordConfirm = document.getElementById('passwordConfirm').value;
+  var token = document.getElementById('token').dataset.token;
+  document.getElementById('token').textContent = 'Processing...';
+  (0, _resetPassword.resetPassword)(password, passwordConfirm, token);
 });
 if (logOutBtn) logOutBtn.addEventListener('click', _login.logout);
 if (userForm) userForm.addEventListener('submit', function (e) {
-  e.preventDefault(); /// mimicking form input from a POST request....with multipart property
-
+  e.preventDefault();
   var form = new FormData();
   form.append('name', document.getElementById('name').value);
   form.append('email', document.getElementById('email').value);
   form.append('photo', document.getElementById('photo').files[0]);
-  console.log('INDEX JS: ', document.getElementById('photo').files); // const name = document.getElementById('name').value;
-  // const email = document.getElementById('email').value;
-
+  console.log('INDEX JS: ', document.getElementById('photo').files);
   (0, _updateSettings.updateSettings)(form, 'data');
 });
 if (userPasswordForm) userPasswordForm.addEventListener('submit', /*#__PURE__*/function () {

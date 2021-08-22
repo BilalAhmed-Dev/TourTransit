@@ -56,6 +56,9 @@ if (resetPasswordForm)
 
     const password = document.getElementById('password').value;
     const passwordConfirm = document.getElementById('passwordConfirm').value;
+    const { token } = document.getElementById('token').dataset;
+    document.getElementById('token').textContent = 'Processing...';
+    resetPassword(password, passwordConfirm, token);
   });
 
 if (logOutBtn) logOutBtn.addEventListener('click', logout);
