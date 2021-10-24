@@ -9,7 +9,6 @@ Add your config variables values in the config.env
 ### Work Under Progress
 
 ### Version 1 :
-* 
 * The data is stored in a hosted Mongo database
 version 1 is hosted [HERE!](https://tour-transit.herokuapp.com/)
 
