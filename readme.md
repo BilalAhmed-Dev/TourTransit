@@ -40,8 +40,8 @@ The application is composed of the following Features:
 * [MongoDB](https://www.mongodb.com/) A document-oriented database program
 * [Mongoose](https://mongoosejs.com/) An npm package that facilitates implementing queries and connecting to MongoDB
 * [Express](https://expressjs.com/) A back end web application framework for Node.js,
-* [JavaScript]
-* [Pug]
+* JavaScript
+* Pug
 
 ---
 
