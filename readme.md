@@ -58,10 +58,10 @@ The following software is required to be installed on your system:
 
 
 ### Install Dependencies 
-...
+```
 npm i
-...
+```
 ### Start the app
-...
+```
 npm run start
-...
+```
