@@ -1,0 +1,47 @@
+# Dependencies
+node_modules
+npm-debug.log*
+
+# Git
+.git
+.gitignore
+
+# Docker files
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Environment files (we'll pass these via docker-compose)
+.env
+config.env
+
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# IDE files
+.vscode
+.idea
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+
+# Build outputs (will be generated in container)
+public/js/bundle.js
+public/js/bundle.js.map
+.cache
+dist

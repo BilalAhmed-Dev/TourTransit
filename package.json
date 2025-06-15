@@ -7,9 +7,15 @@
     "start": "SET NODE_ENV=development&&nodemon server.js",
     "start:prod": "SET NODE_ENV=production&&nodemon server.js",
     "start:test": "nodemon TestThing.js",
+    "dev": "NODE_ENV=development nodemon server.js",
+    "dev:prod": "NODE_ENV=production nodemon server.js",
     "debug": "ndb server.js",
     "watch:js": "parcel watch --no-hmr ./public/js/index.js --out-dir ./public/js --out-file bundle.js --public-url ./",
-    "build:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js"
+    "build:js": "parcel build ./public/js/index.js --out-dir ./public/js --out-file bundle.js --public-url ./",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up",
+    "docker:down": "docker-compose down",
+    "docker:dev": "docker-compose up --build"
   },
   "author": "Bilal Ahmed",
   "license": "ISC",

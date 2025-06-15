@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: campingguide-app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - DATABASE=mongodb://root:1234@mongodb:27017/mydb?authSource=admin
+      - PORT=3000
+      - JWT_SECRET=supersecretkey-changethis-123
+      - JWT_EXPIRES_IN=5d
+      - JWT_COOKIE_EXPIRES_IN=60d
+    volumes:
+      # Bind mount for real-time updates
+      - ./:/app
+      # Exclude node_modules to avoid conflicts
+      - /app/node_modules
+      # Exclude .git directory
+      - /app/.git
+    depends_on:
+      - mongodb
+    networks:
+      - campingguide-network
+    command: >
+      sh -c "
+        echo 'Starting Parcel bundler in background...' &&
+        npm run watch:js &
+        echo 'Starting Node.js server...' &&
+        npm run dev
+      "
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo:5.0
+    container_name: campingguide-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=1234
+      - MONGO_INITDB_DATABASE=mydb
+    volumes:
+      # Persist MongoDB data
+      - mongodb_data:/data/db
+      # Optional: Add initialization scripts
+      - ./mongo-init:/docker-entrypoint-initdb.d
+    networks:
+      - campingguide-network
+    restart: unless-stopped
+
+networks:
+  campingguide-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:

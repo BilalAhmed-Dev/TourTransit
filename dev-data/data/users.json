@@ -170,5 +170,14 @@
     "active": true,
     "photo": "user-20.jpg",
     "password": "$2a$12$uA9FsDw63v6dkJKGlLQ/8ufYBs8euB7kqIQewyYlZXU5azEKeLEky"
+  },
+  {
+    "_id": "5c8a2qwewqeww4b56fa193",
+    "name": "Bilal",
+    "email": "bilal@example.com",
+    "role": "admin",
+    "active": true,
+    "photo": "user-20.jpg",
+    "password": "$2a$12$27tsw0QJ3tck7no8Fr7d/OqnQbkOeX.RLHeePIpLCzcVl45ysAOdO"
   }
 ]

@@ -1,3 +1,4 @@
 node_modules/
 Bilal_Test/
 *.env
+.cache
