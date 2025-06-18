@@ -89,7 +89,11 @@ userSchema.methods.correctPassword = async function (
   canidatePassword,
   hashedPassWord
 ) {
-  return await bcrypt.compare(canidatePassword, hashedPassWord);
+  console.log(canidatePassword)
+  console.log(hashedPassWord)
+  const result = await bcrypt.compare(canidatePassword, hashedPassWord);
+  console.log(result);
+  return result
 };
 
 userSchema.methods.changedPassWordAfter = function (JWTTimeStamp) {

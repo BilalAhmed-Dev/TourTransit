@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app:
-    build: .
+    build: /dockers/node-docker/
     container_name: campingguide-app
     ports:
       - "3000:3000"
@@ -33,27 +33,14 @@ services:
       "
     restart: unless-stopped
 
-  mongodb:
-    image: mongo:5.0
-    container_name: campingguide-mongodb
+
+  mongo:
+    build: /dockers/mongodb/
+    container_name: mongodb
     ports:
       - "27017:27017"
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=1234
-      - MONGO_INITDB_DATABASE=mydb
     volumes:
-      # Persist MongoDB data
-      - mongodb_data:/data/db
-      # Optional: Add initialization scripts
-      - ./mongo-init:/docker-entrypoint-initdb.d
-    networks:
-      - campingguide-network
-    restart: unless-stopped
-
-networks:
-  campingguide-network:
-    driver: bridge
+      - mongo-data:/data/db
 
 volumes:
-  mongodb_data:
+  mongo-data:
